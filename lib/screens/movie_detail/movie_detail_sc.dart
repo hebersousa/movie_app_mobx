@@ -3,7 +3,7 @@ import 'package:movie_app_bloc/models/movie.dart';
 import 'package:movie_app_bloc/screens/movie_detail/movie_detail_bottom_sc.dart';
 import 'dart:async';
 import 'package:movie_app_bloc/application_state_provider.dart';
-import 'package:movie_app_bloc/blocs/images_bloc.dart';
+import 'package:movie_app_bloc/blocs/imagesController.dart';
 
 class MovieDetailScreen extends StatelessWidget{
 
@@ -15,8 +15,8 @@ class MovieDetailScreen extends StatelessWidget{
 @override
 Widget build( BuildContext context){
 
-  ImagesBloc bloc = ApplicationStateProvider.of(context).imagesBloc;
-  bloc.loadData(movie.id);
+  ImagesController controller = ApplicationStateProvider.of(context).imagesController;
+  controller.setMovieId([movie.id]);
   //bloc.setMovieId(movie.id);
 
   var imagemFundo = movie.backdrop_path!=null?Image.network(movie.backdrop_path):Container();
@@ -53,8 +53,8 @@ Widget build( BuildContext context){
 
   Future<Null> onrefresh() async{
 
-    ImagesBloc bloc = ApplicationStateProvider.of(context).imagesBloc;
-    await bloc.loadData(movie.id);
+    ImagesController controller = ApplicationStateProvider.of(context).imagesController;
+    await controller.setMovieId([movie.id]);
   }
 
   return new Scaffold(

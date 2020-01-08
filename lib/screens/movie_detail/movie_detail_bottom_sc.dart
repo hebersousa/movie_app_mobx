@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app_bloc/blocs/images_bloc.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:movie_app_bloc/blocs/imagesController.dart';
 import 'package:movie_app_bloc/application_state_provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -10,7 +11,7 @@ class MovieDetailBottomScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ImagesBloc bloc = ApplicationStateProvider.of(context).imagesBloc;
+    ImagesController controller = ApplicationStateProvider.of(context).imagesController;
 
     var iconPlaceHolder = Padding(
       padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 60.0),
@@ -25,22 +26,25 @@ class MovieDetailBottomScreen extends StatelessWidget {
       );
     }
 
-    return StreamBuilder<List<String>>(
-      stream: bloc.imagesStream,
-      builder: (_, snapshot) {
-        if (snapshot.hasData) {
-            return ListView(
-              scrollDirection: Axis.horizontal,
-              children: snapshot.data.map((url) => getImage(url)).toList());
+    return Observer(
+      builder: (_){
 
-        } else if (snapshot.hasError) {
-            return new Center(child: Text('SEM IMAGENS',style: TextStyle(color: Colors.brown[100]),));
+        var images = controller.images;
+
+        if (images != null) {
+          return ListView(
+              scrollDirection: Axis.horizontal,
+              children: images.map((url) => getImage(url)).toList());
+
+       // } else if (snapshot.hasError) {
+     //     return new Center(child: Text('SEM IMAGENS',style: TextStyle(color: Colors.brown[100]),));
 
         } else {
-            return new Center(child: CircularProgressIndicator(),  );
+          return new Center(child: CircularProgressIndicator(),  );
 
         }
-      },
+    }
     );
+
   }
 }

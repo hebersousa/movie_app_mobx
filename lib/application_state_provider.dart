@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app_bloc/blocs/images_bloc.dart';
-import 'package:movie_app_bloc/blocs/movies_bloc.dart';
+import 'package:movie_app_bloc/blocs/imagesController.dart';
+import 'package:movie_app_bloc/blocs/movies_controller.dart';
 
 class ApplicationStateProvider extends InheritedWidget{
 
-  ImagesBloc _imagesBloc;
-  MoviesBloc _moviesBloc;
+  ImagesController _imagesController;
+  MoviesController _moviesController;
 
   ApplicationStateProvider({Key key, Widget child})
       : super(key: key, child: child){
 
-    _imagesBloc = ImagesBloc();
-    _moviesBloc = MoviesBloc();
+    _imagesController = ImagesController();
+    _moviesController = MoviesController();
 
   }
 
@@ -25,7 +25,7 @@ class ApplicationStateProvider extends InheritedWidget{
   }
 
 
-   ImagesBloc get imagesBloc => _imagesBloc;
-   MoviesBloc get moviesBloc => _moviesBloc;
+  ImagesController get imagesController => _imagesController;
+  MoviesController get moviesController => _moviesController;
 
 }
