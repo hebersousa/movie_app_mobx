@@ -14,4 +14,8 @@ For help getting started with Flutter, view our online
 
 ## Settings
 
-Before running configure the API_KEY in "api_key.dart" file
+1. Before running configure the API_KEY in "api_key.dart" file
+2. run "flutter package get" to update plugins
+3. run "flutter pub run build_runner build" to generate mobx stores classes
+4. Ready to build
+
