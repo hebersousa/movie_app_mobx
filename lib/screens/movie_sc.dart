@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:movie_app_bloc/api.dart';
 import 'package:movie_app_bloc/models/movie.dart';
 import 'package:movie_app_bloc/screens/movie_detail/movie_detail_sc.dart';
@@ -35,8 +36,7 @@ TextEditingController txtController = TextEditingController();
             border: InputBorder.none
         ),
         onChanged: (valor){
-          ApplicationStateProvider.of(context).moviesBloc.busca = valor;
-
+	    ApplicationStateProvider.of(context).moviesController.buscar(valor);
         },
       );
 
@@ -57,7 +57,7 @@ TextEditingController txtController = TextEditingController();
               onPressed: (){
               setState((){
                 txtController.text = '';
-                ApplicationStateProvider.of(context).moviesBloc.busca = '';
+                ApplicationStateProvider.of(context).moviesController.buscar('');
               });
               },)
           ],
@@ -80,59 +80,54 @@ TextEditingController txtController = TextEditingController();
 
   Widget buildProgressIndicatorStream(){
 
-      return StreamBuilder<bool>(
-        stream: ApplicationStateProvider.of(context).moviesBloc.loadingStream,
-        builder: (_, snapshot){
+      return Observer(
+        builder: (_){
 
-          if(snapshot.hasData && snapshot.data)
-              return Center(child: progressIndicator);
+          var loading = ApplicationStateProvider.of(context)
+              .moviesController.loading;
+
+          if(loading)
+            return Center(child: progressIndicator);
           else
             return Padding(padding: const EdgeInsets.all(10.0),);
-
         },
       );
   }
 
-
-
   Widget buildResultsStream(){
 
-    return StreamBuilder<List<Movie>>(
-      stream: ApplicationStateProvider.of(context).moviesBloc.moviesStream,
-      builder: (_,snapshot){
+      return Observer(
+        builder: (_){
 
-        if(snapshot.hasError){
-          return new Center(child: Icon(Icons.movie_creation,size: 200.0,color: Colors.grey[300],));
+          var movies = ApplicationStateProvider.of(context)
+            .moviesController.movies;
 
+          if(movies.length > 0 ){
 
-        }else if(snapshot.hasData){
+            return ListView.builder(
 
-          return ListView.builder(
-
-            itemCount:  snapshot.data.length + 1,
-            itemBuilder: (context, index) {
-
-              List<Movie> movies = snapshot.data;
-
-              if(index < movies.length  ) {
-                return buildItem( movies[index] );
-              }
-              else
-              {
-                ApplicationStateProvider.of(context).moviesBloc.loadMore();
-                return buildProgressIndicatorStream();
-              }
-
-            },
-          );
-        }else{
-          return Container();
-        }
+              itemCount: movies.length + 1,
+              itemBuilder: (context, index) {
 
 
-      },
+                if(index < movies.length  ) {
+                  return buildItem( movies[index] );
+                }
+                else
+                {
+                  ApplicationStateProvider.of(context).moviesController.loadMore();
+                  return buildProgressIndicatorStream();
+                }
 
-    );
+              },
+            );
+
+          }else{
+            return new Center(child: Icon(Icons.movie_creation,size: 200.0,color: Colors.grey[300],));
+          }
+
+        },
+      );
 
   }
 
