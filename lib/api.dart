@@ -1,6 +1,6 @@
-import 'package:movie_app_bloc/api_key.dart';
+import 'package:movie_app_mobx/api_key.dart';
 import 'dart:async';
-import 'package:movie_app_bloc/models/movie.dart';
+import 'package:movie_app_mobx/models/movie.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 

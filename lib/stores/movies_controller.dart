@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 import 'dart:async';
-import 'package:movie_app_bloc/api.dart';
-import 'package:movie_app_bloc/models/movie.dart';
+import 'package:movie_app_mobx/api.dart';
+import 'package:movie_app_mobx/models/movie.dart';
 
 part 'movies_controller.g.dart';
 

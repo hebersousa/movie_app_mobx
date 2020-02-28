@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:movie_app_bloc/api.dart';
-import 'package:movie_app_bloc/models/movie.dart';
-import 'package:movie_app_bloc/screens/movie_detail/movie_detail_sc.dart';
+import 'package:movie_app_mobx/api.dart';
+import 'package:movie_app_mobx/models/movie.dart';
+import 'package:movie_app_mobx/screens/movie_detail/movie_detail_sc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:movie_app_bloc/application_state_provider.dart';
+import 'package:movie_app_mobx/application_state_provider.dart';
 
 class MovieScreen extends StatefulWidget{
 
@@ -72,13 +72,13 @@ TextEditingController txtController = TextEditingController();
               Container(  padding: const EdgeInsets.all(10.0),
                           child: textField
               ),
-              Flexible(child: buildResultsStream())
+              Flexible(child: buildResultsObserver())
         ]) ,
       );
     }
 
 
-  Widget buildProgressIndicatorStream(){
+  Widget buildProgressIndicatorObserver(){
 
       return Observer(
         builder: (_){
@@ -94,7 +94,7 @@ TextEditingController txtController = TextEditingController();
       );
   }
 
-  Widget buildResultsStream(){
+  Widget buildResultsObserver(){
 
       return Observer(
         builder: (_){
@@ -116,7 +116,7 @@ TextEditingController txtController = TextEditingController();
                 else
                 {
                   ApplicationStateProvider.of(context).moviesController.loadMore();
-                  return buildProgressIndicatorStream();
+                  return buildProgressIndicatorObserver();
                 }
 
               },
@@ -142,6 +142,7 @@ TextEditingController txtController = TextEditingController();
                 width: 60.0,
                 placeholder: (context, url) => Icon(Icons.movie_creation),
             ),
+
             onTap: (){
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context)=>MovieDetailScreen(movie) )

@@ -1,7 +1,7 @@
 
 import 'dart:async';
 import 'package:mobx/mobx.dart';
-import 'package:movie_app_bloc/api.dart';
+import 'package:movie_app_mobx/api.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 

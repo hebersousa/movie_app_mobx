@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:movie_app_bloc/blocs/imagesController.dart';
-import 'package:movie_app_bloc/application_state_provider.dart';
+import 'package:movie_app_mobx/stores/imagesController.dart';
+import 'package:movie_app_mobx/application_state_provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+
+
 
 class MovieDetailBottomScreen extends StatelessWidget {
   final idMovie;
@@ -19,11 +21,13 @@ class MovieDetailBottomScreen extends StatelessWidget {
     );
 
     Widget getImage(url){
+
       return CachedNetworkImage(
           imageUrl: url,
           placeholder: (_,url)=> iconPlaceHolder,
           height: 60.0,
       );
+
     }
 
     return Observer(

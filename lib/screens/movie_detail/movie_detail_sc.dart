@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app_bloc/models/movie.dart';
-import 'package:movie_app_bloc/screens/movie_detail/movie_detail_bottom_sc.dart';
+
+import 'package:movie_app_mobx/models/movie.dart';
+import 'package:movie_app_mobx/screens/movie_detail/movie_detail_bottom_sc.dart';
 import 'dart:async';
-import 'package:movie_app_bloc/application_state_provider.dart';
-import 'package:movie_app_bloc/blocs/imagesController.dart';
+import 'package:movie_app_mobx/application_state_provider.dart';
+import 'package:movie_app_mobx/stores/imagesController.dart';
 
 class MovieDetailScreen extends StatelessWidget{
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app_bloc/blocs/imagesController.dart';
-import 'package:movie_app_bloc/blocs/movies_controller.dart';
+import 'package:movie_app_mobx/stores/imagesController.dart';
+import 'package:movie_app_mobx/stores/movies_controller.dart';
 
 class ApplicationStateProvider extends InheritedWidget{
 
