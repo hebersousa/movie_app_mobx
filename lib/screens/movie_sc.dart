@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:movie_app_bloc/api.dart';
 import 'package:movie_app_bloc/models/movie.dart';
 import 'package:movie_app_bloc/screens/movie_detail/movie_detail_sc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -35,8 +36,7 @@ TextEditingController txtController = TextEditingController();
             border: InputBorder.none
         ),
         onChanged: (valor){
-          ApplicationStateProvider.of(context).moviesController.buscar(valor);
-
+	    ApplicationStateProvider.of(context).moviesController.buscar(valor);
         },
       );
 
@@ -90,13 +90,9 @@ TextEditingController txtController = TextEditingController();
             return Center(child: progressIndicator);
           else
             return Padding(padding: const EdgeInsets.all(10.0),);
-
         },
       );
-
   }
-
-
 
   Widget buildResultsStream(){
 
@@ -132,7 +128,6 @@ TextEditingController txtController = TextEditingController();
 
         },
       );
-
 
   }
 

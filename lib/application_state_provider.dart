@@ -9,12 +9,10 @@ class ApplicationStateProvider extends InheritedWidget{
 
   ApplicationStateProvider({Key key, Widget child})
       : super(key: key, child: child){
-
     _imagesController = ImagesController();
     _moviesController = MoviesController();
 
   }
-
 
   @override
   bool updateShouldNotify(_) => true;
@@ -23,7 +21,6 @@ class ApplicationStateProvider extends InheritedWidget{
     return (context.inheritFromWidgetOfExactType(ApplicationStateProvider)
     as ApplicationStateProvider);
   }
-
 
   ImagesController get imagesController => _imagesController;
   MoviesController get moviesController => _moviesController;

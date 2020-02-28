@@ -1,4 +1,4 @@
-# movie_app_bloc
+# movie_app_mobx
 
 Application developed in Flutter to consume a RESTful API.
 In this example we use the Movie Database API.

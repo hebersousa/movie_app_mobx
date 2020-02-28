@@ -26,7 +26,6 @@ Widget build( BuildContext context){
       onPressed: ()=>Navigator.of(context).pop()
   );
 
-
   var ano =  movie.release_date;
   if(ano.isNotEmpty)  ano = "(${movie.release_date.substring(0,4)})";
 
@@ -52,7 +51,6 @@ Widget build( BuildContext context){
 
 
   Future<Null> onrefresh() async{
-
     ImagesController controller = ApplicationStateProvider.of(context).imagesController;
     await controller.setMovieId([movie.id]);
   }
@@ -92,7 +90,6 @@ Widget build( BuildContext context){
   );
 
 }
-
 
 }
 

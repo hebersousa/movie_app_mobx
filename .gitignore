@@ -8,7 +8,6 @@ build/
 
 .flutter-plugins
 
-
 # Created by https://www.gitignore.io/api/android,flutter,intellij+all,androidstudio
 # Edit at https://www.gitignore.io/?templates=android,flutter,intellij+all,androidstudio
 
@@ -369,3 +368,4 @@ doc/api/
 *.js.map
 
 # End of https://www.gitignore.io/api/dart
+

@@ -45,6 +45,5 @@ class MovieDetailBottomScreen extends StatelessWidget {
         }
     }
     );
-
   }
 }
